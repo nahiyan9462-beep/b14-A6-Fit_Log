@@ -1,8 +1,9 @@
 
+'use client'
 
 import React, { createContext, ReactNode, useState } from 'react';
 
-const LibraryContext = createContext({}); 
+export const LibraryContext = createContext({}); 
 
 const LibraryProvider = ({children} : {children : ReactNode}) => {
 

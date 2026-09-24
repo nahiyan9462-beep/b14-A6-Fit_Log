@@ -1,3 +1,4 @@
+import PlanButton from "@/components/librarydetailpage/PlanButton";
 import { ILibrary } from "@/data-types/library.type";
 import Image from "next/image";
 import React from "react";
@@ -9,15 +10,13 @@ export interface LibraryDetailProps {
 }
 
 const getLibrary = async (): Promise<ILibrary[]> => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
-    cache: "no-store",
-  });
-
+  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const data =await res.json();
   if (!res.ok) {
     throw new Error("Failed to fetch library data");
   }
 
-  return res.json();
+  return data;
 };
 
 const LibraryDetailspage = async ({
@@ -28,7 +27,7 @@ const LibraryDetailspage = async ({
   const libraryData = await getLibrary();
 
   const library = libraryData.find(
-    (item) => String(item.id) === String(id)
+    (library) => String(library.id) === String(id)
   );
 
   if (!library) {
@@ -41,11 +40,6 @@ const LibraryDetailspage = async ({
     );
   }
 
-  /*
-    Your API has instructions as a string.
-    If instructions are separated by new lines,
-    we convert them into an array for the numbered list.
-  */
    const instructions = Array.isArray(library.instructions)
   ? library.instructions
   : library.instructions
@@ -57,10 +51,6 @@ const LibraryDetailspage = async ({
     <main className="min-h-screen bg-[#07151d] px-4 py-8 text-white md:px-8 lg:px-10">
       <section className="mx-auto max-w-[1400px]">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12 xl:gap-16">
-
-          {/* ================================================= */}
-          {/* LEFT SIDE - IMAGE */}
-          {/* ================================================= */}
 
           <div className="overflow-hidden rounded-2xl">
             <Image
@@ -79,10 +69,6 @@ const LibraryDetailspage = async ({
               "
             />
           </div>
-
-          {/* ================================================= */}
-          {/* RIGHT SIDE */}
-          {/* ================================================= */}
 
           <div className="flex flex-col justify-center">
 
@@ -112,10 +98,6 @@ const LibraryDetailspage = async ({
               {library.description}
             </p>
 
-            {/* ================================================= */}
-            {/* MUSCLE GROUP TAGS */}
-            {/* ================================================= */}
-
             <div className="mt-5 flex flex-wrap gap-3">
               {library.muscleGroups.map((muscle, index) => (
                 <span
@@ -134,10 +116,6 @@ const LibraryDetailspage = async ({
                 </span>
               ))}
             </div>
-
-            {/* ================================================= */}
-            {/* INFORMATION BOX */}
-            {/* ================================================= */}
 
             <div className="
               mt-7
@@ -337,10 +315,6 @@ const LibraryDetailspage = async ({
 
             </div>
 
-            {/* ================================================= */}
-            {/* INSTRUCTIONS */}
-            {/* ================================================= */}
-
             <div className="mt-8">
 
               <h2 className="
@@ -377,10 +351,6 @@ const LibraryDetailspage = async ({
 
             </div>
 
-            {/* ================================================= */}
-            {/* ACTION BUTTONS */}
-            {/* ================================================= */}
-
             <div className="
               mt-8
               flex
@@ -390,28 +360,7 @@ const LibraryDetailspage = async ({
             ">
 
               {/* Add to plan */}
-              <button
-                type="button"
-                className="
-                  flex
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-xl
-                  bg-[#e8f500]
-                  px-6
-                  py-3
-                  text-sm
-                  font-semibold
-                  text-black
-                  transition
-                  duration-200
-                  hover:bg-[#d9e600]
-                  hover:shadow-[0_0_25px_rgba(232,245,0,0.15)]
-                "
-              >
-                Add to today's plan
-              </button>
+               <PlanButton library={library}/>
 
               {/* Save */}
               <button
