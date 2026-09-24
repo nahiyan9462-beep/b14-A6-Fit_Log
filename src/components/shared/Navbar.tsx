@@ -14,7 +14,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link href="/workout" className="font-medium">
+        <Link href="/library" className="font-medium">
           Workouts
         </Link>
       </li>
@@ -28,8 +28,8 @@ const Navbar = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4 shadow-sm">
-      <nav className="navbar container mx-auto px-5 backdrop-blur-md lg:px-7">
+    <header className="sticky top-0 z-50 px-4 pt-4 shadow-sm backdrop-blur-md">
+      <nav className="navbar container mx-auto px-5 lg:px-7">
 
         {/* Logo */}
         <div className="navbar-start gap-2">
@@ -63,15 +63,15 @@ const Navbar = () => {
         {/* Desktop Actions */}
         <div className="navbar-end hidden gap-3 lg:flex">
           <Link
-            href="/login"
+            href=""
             className="rounded-xl px-4 py-2 font-semibold transition-colors hover:bg-base-200"
           >
             plan
           </Link>
 
           <Link
-            href="/signup"
-            className="btn btn-primary rounded-xl px-6 font-semibold shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+            href=""
+            className="btn bg-[#dfff00] rounded-xl px-6 font-semibold shadow-md transition-all duration-200 text-slate-600 hover:-translate-y-0.5 hover:shadow-lg "
           >
             Saved
           </Link>
