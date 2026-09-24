@@ -7,23 +7,9 @@ import React from "react";
 const Navbar = () => {
   const links = (
     <>
-      <li>
-        <Link href="/" className="font-medium">
-          Home
-        </Link>
-      </li>
-
-      <li>
-        <Link href="/library" className="font-medium">
-          Workouts
-        </Link>
-      </li>
-
-      <li>
-        <Link href="/plans" className="font-medium">
-          Plans
-        </Link>
-      </li>
+    <li><Link href="/">Home</Link></li>
+      <li><Link href="/library">Workouts</Link></li>
+      <li><Link href="/library">My plan</Link></li>
     </>
   );
 

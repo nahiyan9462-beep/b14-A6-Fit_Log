@@ -19,7 +19,7 @@ const Library = async() => {
             </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-5'>
             {
-                libraryData.map((library:ILibrary,ind:number)=>{
+                libraryData.slice(0,6).map((library:ILibrary,ind:number)=>{
                     return <LibraryCard key={ind} library={library}/>
                 })
             }

@@ -14,9 +14,9 @@ const Library = async() => {
     console.log(libraryData,'librarydata')
     return (
         <section className='container mx-auto'>
-            <div className='container mx-auto mt-5 p-4'>
+            <div className='container mx-auto mt-5 p-4 text-center items-center'>
                 <h2 className='text-4xl font-bold'>THE LIBRARY</h2>
-                <p className='text-slate-300'>Twelve lifts covering every major muscle group.</p>
+                <p className='text-slate-300 '>Twelve lifts covering every major muscle group.</p>
             </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-5'>
             {

@@ -1,5 +1,6 @@
 import { ILibrary } from "@/data-types/library.type";
 import Image from "next/image";
+import Link from "next/link";
 
 type LibraryCardProps = {
   library: ILibrary;
@@ -116,13 +117,14 @@ const LibraryCard = ({ library, priority = false }: LibraryCardProps) => {
               {library.reps}
             </p>
           </div>
-
-          <button
-            type="button"
-            className="shrink-0 rounded-xl bg-[#dfff00] px-4 py-3 text-xs font-black uppercase tracking-wide text-black transition duration-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c23] active:scale-95"
-          >
-            View Workout
-          </button>
+            <Link href={`/library/${library.id}`}>
+              <button
+                type="button"
+                className="shrink-0 rounded-xl bg-[#dfff00] px-4 py-3 text-xs font-black uppercase tracking-wide text-black transition duration-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#111c23] active:scale-95"
+              >
+                View Workout
+              </button>
+            </Link>
         </div>
       </div>
     </article>
