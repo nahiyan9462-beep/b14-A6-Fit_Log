@@ -8,13 +8,13 @@ export const LibraryContext = createContext({});
 const LibraryProvider = ({children} : {children : ReactNode}) => {
 
     const [workOutPlan,setWorkOutPlan] = useState([]);
-    const [planSaved,setPlanSaved] = useState([]);
+    const [saved,setSaved] = useState([]);
 
     const sharedData = {
         workOutPlan,
         setWorkOutPlan,
-        planSaved,
-        setPlanSaved
+        saved,
+        setSaved,
     };
 
     return (

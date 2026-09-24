@@ -2,51 +2,23 @@
 
 import { LibraryContext } from "@/context/LibraryContext";
 import { ILibrary } from "@/data-types/library.type";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 
 interface PlanButtonProps {
   library: ILibrary;
 }
 
 const PlanButton = ({ library }: PlanButtonProps) => {
-    const  {}=useContext(LibraryContext)
+    const  {workOutPlan,setWorkOutPlan}=useContext(LibraryContext);
      
 
-
-  const [added, setAdded] = useState(false);
-
   const handleAddToPlan = () => {
-    try {
-      // Get existing plan
-      const existingPlan = localStorage.getLibrary("fitlog-plan");
+    console.log('button triggered',library)
 
-      const plan: ILibrary[] = existingPlan
-        ? JSON.parse(existingPlan)
-        : [];
 
-      // Check if exercise is already added
-      const alreadyExists = plan.some(
-        (library) => library.id === library.id
-      );
-
-      if (alreadyExists) {
-        setAdded(true);
-        return;
-      }
-
-      // Add current exercise
-      const updatedPlan = [...plan, library];
-
-      // Save to localStorage
-      localStorage.setItem(
-        "fitlog-plan",
-        JSON.stringify(updatedPlan)
-      );
-
-      setAdded(true);
-    } catch (error) {
-      console.error("Failed to add exercise to plan:", error);
-    }
+    setWorkOutPlan([...workOutPlan,library]);
+    alert(`you have added '${library.id}' card`)
+     
   };
 
   return (
@@ -71,9 +43,10 @@ const PlanButton = ({ library }: PlanButtonProps) => {
         hover:shadow-[0_0_25px_rgba(232,245,0,0.15)]
       "
     >
-      <span>{added ? "✓" : "▣"}</span>
-
-      {added
+    
+      <span>{workOutPlan ? "✓" : "▣"}</span>
+    
+      {workOutPlan
         ? "Added to today's plan"
         : "Add to today's plan"}
     </button>

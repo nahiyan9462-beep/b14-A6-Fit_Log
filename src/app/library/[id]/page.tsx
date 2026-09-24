@@ -1,4 +1,5 @@
 import PlanButton from "@/components/librarydetailpage/PlanButton";
+import SavedButton from "@/components/librarydetailpage/SavedButton";
 import { ILibrary } from "@/data-types/library.type";
 import Image from "next/image";
 import React from "react";
@@ -360,32 +361,9 @@ const LibraryDetailspage = async ({
             ">
 
               {/* Add to plan */}
-               <PlanButton library={library}/>
-
-              {/* Save */}
-              <button
-                type="button"
-                className="
-                  flex
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-xl
-                  border
-                  border-gray-500
-                  px-6
-                  py-3
-                  text-sm
-                  font-semibold
-                  text-white
-                  transition
-                  duration-200
-                  hover:border-gray-300
-                  hover:bg-white/5
-                "
-              >
-                Save for later
-              </button>
+              <PlanButton library={library}/>
+              <SavedButton library={library}></SavedButton>
+               
 
             </div>
 
