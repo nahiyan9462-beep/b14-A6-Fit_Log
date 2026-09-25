@@ -3,6 +3,7 @@
 import { LibraryContext } from "@/context/LibraryContext";
 import { ILibrary } from "@/data-types/library.type";
 import { useContext} from "react";
+import { toast } from "react-toastify";
 
 interface PlanButtonProps {
   library: ILibrary;
@@ -11,13 +12,18 @@ interface PlanButtonProps {
 const PlanButton = ({ library }: PlanButtonProps) => {
     const  {workOutPlan,setWorkOutPlan}=useContext(LibraryContext);
      
+     
 
   const handleAddToPlan = () => {
+
+    // if (alreadyAdded) return;
+    
     console.log('button triggered',library)
 
 
     setWorkOutPlan([...workOutPlan,library]);
-    alert(`you have added '${library.id}' card`)
+    
+    toast.success(`you've added successfully`)
      
   };
 
@@ -25,6 +31,7 @@ const PlanButton = ({ library }: PlanButtonProps) => {
     <button
       type="button"
       onClick={()=>handleAddToPlan()}
+       
       className="
         flex
         items-center
@@ -44,11 +51,7 @@ const PlanButton = ({ library }: PlanButtonProps) => {
       "
     >
     
-      <span>{workOutPlan ? "✓" : "▣"}</span>
-    
-      {workOutPlan
-        ? "Added to today's plan"
-        : "Add to today's plan"}
+      Add to Plan
     </button>
   );
 };

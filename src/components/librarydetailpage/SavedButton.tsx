@@ -6,6 +6,7 @@
  import { LibraryContext } from "@/context/LibraryContext";
  import { ILibrary } from "@/data-types/library.type";
  import { useContext} from "react";
+import { toast } from "react-toastify";
  
 export interface PlanButtonProps {
    library: ILibrary;
@@ -20,7 +21,7 @@ export interface PlanButtonProps {
  
  
      setSaved([...saved,library]);
-     alert(`you have added '${library.id}' card`)
+    toast.success(`you have added '${library.id}' card`)
       
    };
  
@@ -47,12 +48,8 @@ export interface PlanButtonProps {
             hover:bg-white/5
        "
      >
-     
-       <span>{saved ? "✓" : ""}</span>
-     
-       {saved
-         ? "sved for later"
-         : "save for later"}
+      Saved for later
+      
      </button>
    );
  };
