@@ -2,7 +2,8 @@
 'use client'
 
 import LibraryCard from '@/components/homepage/LibraryCard';
-import TodaysPlanCard from '@/components/homepage/TodaysPlanCard';
+import SavedLibraryCard from '@/components/allcard/SavedCard';
+import TodaysPlanCard from '@/components/allcard/TodaysPlanCard';
 import { LibraryContext } from '@/context/LibraryContext';
 import { ILibrary } from '@/data-types/library.type';
 import Link from 'next/link';
@@ -32,11 +33,27 @@ const MyPlanPage = () => {
                             <div className='container mx-auto'>
                                 <h2 className='text-center font-semibold text-2xl'>NOTHING HERE YET</h2>
                                 <p className='text-center text-slate-400'>Browse the library and add a lift to get today moving.</p>
-
-                                <Link href=''><button
-                                     
+                                <div className="flex w-full justify-center px-4 sm:px-0 mt-5">
+                                    <Link
+                                        href="/library"
+                                        className="
+                                        flex w-full max-w-xs
+                                        items-center justify-center gap-2
+                                        rounded-xl
+                                        bg-[#e8f500]
+                                        px-6 py-3
+                                        text-sm font-semibold text-black
+                                        transition-all duration-200
+                                        hover:bg-[#d9e600]
+                                        hover:shadow-[0_0_25px_rgba(232,245,0,0.15)]
+                                        active:scale-95
+                                        sm:w-auto sm:min-w-48
+                                        "
                                     >
-                                Go to Workouts</button></Link>
+                                        Go to Workouts
+                                    </Link>
+                                </div>
+                                 
                             </div>
                             
                         )}
@@ -47,16 +64,32 @@ const MyPlanPage = () => {
                      defaultChecked />
                     <div className="tab-content bg-base-100 border-base-300 p-10 mt-5"> 
                         {saved.length>0?(saved.map((library : ILibrary)=>{
-                            return <LibraryCard key={library.id} library={library}></LibraryCard>
+                            return <SavedLibraryCard key={library.id} library={library}></SavedLibraryCard> 
                         })
                         ):(
                             <div className='container mx-auto'>
                                 <h2 className='text-center font-semibold text-2xl'>NOTHING HERE YET</h2>
                                 <p className='text-center text-slate-400'>Browse the library and add a lift to get today moving.</p>
-                                <Link href=''><button
-                                   className='btn btn-outline items-center justify-center'
+                                <div className="flex w-full justify-center px-4 sm:px-0 mt-5">
+                                    <Link
+                                        href="/library"
+                                        className="
+                                        flex w-full max-w-xs
+                                        items-center justify-center gap-2
+                                        rounded-xl
+                                        bg-[#e8f500]
+                                        px-6 py-3
+                                        text-sm font-semibold text-black
+                                        transition-all duration-200
+                                        hover:bg-[#d9e600]
+                                        hover:shadow-[0_0_25px_rgba(232,245,0,0.15)]
+                                        active:scale-95
+                                        sm:w-auto sm:min-w-48
+                                        "
                                     >
-                                Go to Workouts</button></Link>
+                                        Go to Workouts
+                                    </Link>
+                                </div>
                             </div>
                         )}
 
