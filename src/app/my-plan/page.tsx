@@ -2,6 +2,7 @@
 'use client'
 
 import LibraryCard from '@/components/homepage/LibraryCard';
+import TodaysPlanCard from '@/components/homepage/TodaysPlanCard';
 import { LibraryContext } from '@/context/LibraryContext';
 import { ILibrary } from '@/data-types/library.type';
 import Link from 'next/link';
@@ -25,7 +26,7 @@ const MyPlanPage = () => {
                     <input type="radio" name="my_tabs_6" className="tab" aria-label={`Today's plan (${workOutPlan.length})`} />
                     <div className="tab-content bg-base-100 border-base-300 p-10 mt-5">
                         {workOutPlan.length>0?(workOutPlan.map((library : ILibrary)=>{
-                            return <LibraryCard key={library.id} library={library}></LibraryCard>
+                            return <TodaysPlanCard key={library.id} library={library}></TodaysPlanCard>
                         })
                         ):(
                             <div className='container mx-auto'>
