@@ -11,6 +11,8 @@ export interface ILibrary {
     reps: number,
     rating: number,
     description:string,
-    instructions: string
+    instructions: string,
+
+    isDone:boolean
        
 }

@@ -1,14 +1,27 @@
 
-
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { ILibrary } from "@/data-types/library.type";
+import { useContext } from "react";
+import { LibraryContext } from "@/context/LibraryContext";
+import { toast } from "react-toastify";
 
 type SavedLibraryCardProps = {
   library: ILibrary;
 };
 
 const SavedLibraryCard = ({ library }: SavedLibraryCardProps) => {
+
+    const { saved, setSaved } = useContext(LibraryContext);
+
+    const handleRemove = () => {
+        setSaved (
+          saved.filter((workout) => workout.id !== library.id)
+        );
+         toast.success (` ${library.name} removed successfully.`);
+      };
+
   return (
     <article
       className="
@@ -197,45 +210,95 @@ const SavedLibraryCard = ({ library }: SavedLibraryCardProps) => {
           </div>
 
           {/* ================= BOTTOM ================= */}
-          <div
-            className="
-              mt-5 flex flex-col gap-3
-              border-t border-white/10
-              pt-4
-              sm:flex-row sm:items-center sm:justify-between
-            "
-          >
-
-            {/* Description */}
-            <p className="line-clamp-1 max-w-xl text-sm text-gray-500">
-              {library.description}
-            </p>
-
-            {/* Button */}
-            <Link
-              href={`/library/${library.id}`}
+           <div
               className="
-                inline-flex shrink-0
-                items-center justify-center gap-2
-                rounded-xl
-                bg-[#dfff00]
-                px-5 py-3
-                text-sm font-black
-                uppercase tracking-wide
-                text-black
-                transition-all duration-300
-                hover:bg-white
-                hover:shadow-[0_0_25px_rgba(223,255,0,0.25)]
-                active:scale-95
+                mt-5
+                flex
+                flex-col
+                gap-4
+                border-t border-white/10
+                pt-4
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
               "
             >
-              View Workout
-              <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
+              {/* Description */}
+              <p className="line-clamp-1 min-w-0 flex-1 text-sm text-gray-500">
+                {library.description}
+              </p>
 
-          </div>
+              {/* Right side actions */}
+              <div className="flex shrink-0 items-center justify-end gap-2">
+
+                {/* View Workout */}
+                <Link
+                  href={`/library/${library.id}`}
+                  className="
+                    inline-flex
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    bg-[#dfff00]
+                    px-5 py-3
+                    text-sm
+                    font-black
+                    uppercase
+                    tracking-wide
+                    text-black
+                    transition-all
+                    duration-300
+                    hover:bg-white
+                    hover:shadow-[0_0_25px_rgba(223,255,0,0.25)]
+                    active:scale-95
+                  "
+                >
+                  View Workout
+
+                  <span
+                    className="
+                      text-base
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-1
+                    "
+                  >
+                    →
+                  </span>
+                </Link>
+
+                {/* Remove */}
+                <button
+                  type="button"
+                  onClick={handleRemove}
+                  aria-label={`Remove ${library.name}`}
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    border
+                    border-white/20
+                    bg-white/5
+                    text-lg
+                    text-gray-400
+                    transition-all
+                    duration-300
+                    hover:border-slate-900
+                    hover:bg-slate-600
+                    hover:text-green-400
+                    active:scale-90
+                  "
+                >
+                  ×
+                </button>
+
+              </div>
+            </div>
 
         </div>
       </div>

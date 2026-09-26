@@ -12,18 +12,20 @@ interface PlanButtonProps {
 const PlanButton = ({ library }: PlanButtonProps) => {
     const  {workOutPlan,setWorkOutPlan}=useContext(LibraryContext);
      
-     
+    const alreadyAdded = workOutPlan.some(
+    (workout) => workout.id === library.id
+  );
 
   const handleAddToPlan = () => {
 
-    // if (alreadyAdded) return;
+    if (alreadyAdded) return;
     
     console.log('button triggered',library)
 
 
     setWorkOutPlan([...workOutPlan,library]);
     
-    toast.success(`you've added successfully`)
+    toast.success(`${library.name} added successfully.`)
      
   };
 
@@ -51,7 +53,7 @@ const PlanButton = ({ library }: PlanButtonProps) => {
       "
     >
     
-      Add to Plan
+       {alreadyAdded ? "✓ Added to today's plan" : "Add to today's plan"}
     </button>
   );
 };
