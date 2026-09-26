@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,16 +9,24 @@ import { toast } from "react-toastify";
 
 type TodaysPlanCardProps = {
   library: ILibrary;
+  // workOutPlan: ILibrary[];
+  // setWorkOutPlan: React.Dispatch<React.SetStateAction<ILibrary[]>>;
 };
 
 const TodaysPlanCard = ({ library }: TodaysPlanCardProps) => {
-  const { workOutPlan, setWorkOutPlan } = useContext(LibraryContext);
+  const  { workOutPlan, setWorkOutPlan } = useContext(LibraryContext);
+
+
+   
 
   const handleRemove = () => {
-    setWorkOutPlan (
-      workOutPlan.filter((workout) => workout.id !== library.id)
-    );
-     toast.success (`${library.name} removed  successfully.`);
+    setWorkOutPlan(workOutPlan.filter((library) =>String(library.id) === String(library.id)));
+    toast.success(`${library.name} removed successfully.`);
+  };
+
+  const handleMarkAsDone = () => {
+    // TODO: hook this up to your actual "completed workouts" state/API
+    toast.success(`${library.name} marked as done!`);
   };
 
   return (
@@ -48,7 +56,6 @@ const TodaysPlanCard = ({ library }: TodaysPlanCardProps) => {
             group-hover:scale-105
           "
         />
-
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
@@ -58,11 +65,8 @@ const TodaysPlanCard = ({ library }: TodaysPlanCardProps) => {
           {library.name}
         </h2>
 
-        <p className="mt-1 text-sm text-gray-300">
-          {library.equipment}
-        </p>
+        <p className="mt-1 text-sm text-gray-300">{library.equipment}</p>
 
-        {/* Stats */}
         <div className="mt-4 flex flex-wrap items-center gap-5 text-sm">
           <div className="flex items-center gap-2 text-gray-300">
             <span className="text-[#dfff00]">◷</span>
@@ -83,65 +87,46 @@ const TodaysPlanCard = ({ library }: TodaysPlanCardProps) => {
 
       {/* Actions */}
       <div className="flex shrink-0 items-center gap-3">
-
-        {/* View Details */}
         <Link
           href={`/library/${library.id}`}
           className="
-            rounded-full
-            border border-white
-            px-6 py-3
-            text-sm font-bold
-            text-white
+            rounded-full border border-white
+            px-6 py-3 text-sm font-bold text-white
             transition-all duration-300
-            hover:bg-white
-            hover:text-black
+            hover:bg-white hover:text-black
           "
         >
           View Details
         </Link>
 
-        {/* Mark as Done */}
         <button
           type="button"
+          onClick={handleMarkAsDone}
           className="
-            rounded-full
-            bg-[#dfff00]
-            px-6 py-3
-            text-sm font-bold
-            text-black
+            rounded-full bg-[#dfff00]
+            px-6 py-3 text-sm font-bold text-black
             transition-all duration-300
-            hover:bg-white
-            active:scale-95
+            hover:bg-white active:scale-95
           "
         >
           ✓ Mark as Done
         </button>
 
-        {/* Remove */}
         <button
           type="button"
           onClick={handleRemove}
           aria-label={`Remove ${library.name}`}
           className="
-            flex h-10 w-10
-            shrink-0
-            items-center justify-center
-            border border-white/20
-            rounded-3xl
-            bg-white/5
-            text-lg
-            text-gray-400
+            flex h-10 w-10 shrink-0 items-center justify-center
+            rounded-3xl border border-white/20
+            bg-white/5 text-lg text-gray-400
             transition-all duration-300
-            hover:border-slate-400/50
-            hover:bg-slate-500/10
-            hover:text-slate-400
+            hover:border-slate-400/50 hover:bg-slate-500/10 hover:text-slate-400
             active:scale-90
           "
         >
           ×
         </button>
-
       </div>
     </article>
   );

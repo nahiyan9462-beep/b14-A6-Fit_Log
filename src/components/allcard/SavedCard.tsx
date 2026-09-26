@@ -17,7 +17,7 @@ const SavedLibraryCard = ({ library }: SavedLibraryCardProps) => {
 
     const handleRemove = () => {
         setSaved (
-          saved.filter((workout) => workout.id !== library.id)
+          saved.filter((library) => String(library.id) === String(library.id))
         );
          toast.success (` ${library.name} removed successfully.`);
       };

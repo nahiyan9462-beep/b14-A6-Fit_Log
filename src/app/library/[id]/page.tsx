@@ -11,7 +11,7 @@ export interface LibraryDetailProps {
 }
 
 const getLibrary = async (): Promise<ILibrary[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}https://api.abcz.workers.dev/api/fitlog`);
+  const res = await fetch(`https://api.abcz.workers.dev/api/fitlog`);
   const data =await res.json();
   if (!res.ok) {
     throw new Error("Failed to fetch library data");

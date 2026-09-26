@@ -10,12 +10,13 @@ interface PlanButtonProps {
 }
 
 const PlanButton = ({ library }: PlanButtonProps) => {
-    const  {workOutPlan,setWorkOutPlan}=useContext(LibraryContext);
+    const  {workOutPlan,setWorkOutPlan,}=useContext(LibraryContext);
      
     const alreadyAdded = workOutPlan.some(
     (workout) => workout.id === library.id
   );
 
+ 
   const handleAddToPlan = () => {
 
     if (alreadyAdded) return;
@@ -33,6 +34,7 @@ const PlanButton = ({ library }: PlanButtonProps) => {
     <button
       type="button"
       onClick={()=>handleAddToPlan()}
+       
        
       className="
         flex

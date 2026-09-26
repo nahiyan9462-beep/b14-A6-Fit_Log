@@ -5,15 +5,15 @@ import { ILibrary } from '@/data-types/library.type';
 import { Clock3, Dumbbell, Flame } from 'lucide-react';
 
 interface WorkoutStatsProps {
-  workout: ILibrary[];
+  library: ILibrary[];
 }
 
 const ACCENT = '#dfff00';
 
-const WorkoutStats = ({ workout }: WorkoutStatsProps) => {
-  const totalExercises = workout.length;
-  const totalMinutes = workout.reduce((sum, item) => sum + (item.duration ?? 0), 0);
-  const totalCalories = workout.reduce((sum, item) => sum + (item.caloriesBurned ?? 0), 0);
+const WorkoutStats = ({ library }: WorkoutStatsProps) => {
+  const totalExercises = library.length;
+  const totalMinutes = library.reduce((sum, item) => sum + (item.duration ?? 0), 0);
+  const totalCalories = library.reduce((sum, item) => sum + (item.caloriesBurned ?? 0), 0);
 
   const stats = [
     {

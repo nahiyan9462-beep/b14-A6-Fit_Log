@@ -8,6 +8,7 @@ import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import WorkoutStats from '@/components/homepage/WorkoutStats';
 
+
 const MyPlanPage = () => {
     const { workOutPlan, saved } = useContext(LibraryContext);
     const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
@@ -34,9 +35,6 @@ const MyPlanPage = () => {
 
 
 
-
-
-
     return (
          <section className='container mx-auto'>
             <div className=' mt-5 p-4'>
@@ -44,7 +42,7 @@ const MyPlanPage = () => {
                 <p>Cap of five lifts for today. Finish them , then load more .</p>
             </div>
 
-            <WorkoutStats workout={activeList} />
+            <WorkoutStats library={activeList} />
 
 
             <div className='container mx-auto mt-5 items-center justify-end'>
@@ -71,8 +69,8 @@ const MyPlanPage = () => {
                     />
                     <div className="tab-content bg-base-100 border-base-300 p-10 mt-5">
                         {sortedWorkoutPlan.length > 0 ? (
-                            sortedWorkoutPlan.map((item: ILibrary) => (
-                                <TodaysPlanCard key={item.id} library={item} />
+                            sortedWorkoutPlan.map((library: ILibrary) => (
+                                <TodaysPlanCard key={library.id} library={library} />
                             ))
                         ) : (
                             <div className='container mx-auto'>
